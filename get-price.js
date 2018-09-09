@@ -34,7 +34,6 @@ const getDiscountRate = function () {
 	// use a closure to return discount rates
 	return function(quantity) {
 		for(i=0; i < qtys.length; i++) {
-			console.log('quantity', quantity, 'qtys', qtys[i]);
 			if(quantity >= qtys[i]){
 				return discounts[qtys[i]];
 			}
@@ -91,16 +90,16 @@ module.exports = function getPrice( quantity, price, provinceCode) {
 	if(!inputValidations.provinceCode(provinceCode)) {
 		throw new Error("Invalid provinceCode: usage[provinceCode should be "+Object.keys(provinceData).join()+" ]");
 	}
-	console.log('input:', quantityVal+' items', ',$'+priceVal+'per item', provinceData[provinceCode].name);
+	console.log('input: ', quantityVal+' items,', '$'+priceVal+' per item,', provinceData[provinceCode].name);
 
 	var discountRate = getDiscountRate(quantityVal.toString());
 	var taxRate = provinceData[provinceCode].taxRate;
-	console.log('tax', taxRate, 'discount', discountRate);
 	var totalCost = quantityVal * priceVal;
 	var totalCostDiscounted = totalCost - ((totalCost*discountRate)/100);
 	var totalCostTaxed = totalCostDiscounted + ((totalCostDiscounted*taxRate)/100);
 	totalCostTaxed = totalCostTaxed.toFixed(2); // resolved to 2 decimals
-	
+
+	console.log('output:', '$'+totalCostTaxed);
 	return totalCostTaxed;
 	
 }
