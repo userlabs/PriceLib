@@ -88,6 +88,7 @@ module.exports = function getPrice( quantity, price, provinceCode) {
 	totalCostTaxed = totalCostTaxed.toFixed(2); // resolved to 2 decimals
 
 	console.log('output:', '$'+totalCostTaxed);
+//	console.log('output:', '$'+totalCostTaxed, ', discount',discountRate, '%, tax', taxRate, '%');
 	return totalCostTaxed;
 	
 }
