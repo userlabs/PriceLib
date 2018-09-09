@@ -20,22 +20,22 @@ const discounts = {
 
 const getDiscountRate = function () {
 
-	// cache the qty keys in reverse order 10000, 7000 etc.
-	var qtys = Object.keys(discounts);
+	// cache the orderVal keys in reverse order 10000, 7000 etc.
+	var orderVals = Object.keys(discounts);
 	// convert them to numbers - not doing this caused the matching below to give weird behavior
-	for(i=0; i < qtys.length; i++) {
-		qtys[i] = parseInt(qtys[i])
+	for(i=0; i < orderVals.length; i++) {
+		orderVals[i] = parseInt(orderVals[i])
 	}
 	// number matching when sorting
-	qtys.sort(function(a,b) {
+	orderVals.sort(function(a,b) {
 		return a - b;
 	}).reverse();
 
 	// use a closure to return discount rates
-	return function(quantity) {
-		for(i=0; i < qtys.length; i++) {
-			if(quantity >= qtys[i]){
-				return discounts[qtys[i]];
+	return function(orderValue) {
+		for(i=0; i < orderVals.length; i++) {
+			if(orderValue >= orderVals[i]){
+				return discounts[orderVals[i]];
 			}
 		}
 		return 0;
@@ -92,9 +92,9 @@ module.exports = function getPrice( quantity, price, provinceCode) {
 	}
 	console.log('input: ', quantityVal+' items,', '$'+priceVal+' per item,', provinceData[provinceCode].name);
 
-	var discountRate = getDiscountRate(quantityVal.toString());
 	var taxRate = provinceData[provinceCode].taxRate;
 	var totalCost = quantityVal * priceVal;
+	var discountRate = getDiscountRate(totalCost);
 	var totalCostDiscounted = totalCost - ((totalCost*discountRate)/100);
 	var totalCostTaxed = totalCostDiscounted + ((totalCostDiscounted*taxRate)/100);
 	totalCostTaxed = totalCostTaxed.toFixed(2); // resolved to 2 decimals

@@ -48,21 +48,21 @@ describe( 'Test suite', function( done) {
 		assert.equal(getPrice(1, 20, 'ON'),(1*20*(1.13)).toFixed(2));
 		done();
 	});
-	it('totalCost q=999,p=20,pr=ON', function(done) {
-		assert.equal(getPrice(999, 20, 'ON'),(999*20*(1.13)).toFixed(2));
+	it('totalCost q=49,p=20,pr=ON', function(done) {
+		assert.equal(getPrice(49, 20, 'ON'),(49*20*(1.13)).toFixed(2));
 		done();
 	});
 
-	it('totalCost q=1000,p=20,pr=ON', function(done) {
-		assert.equal(getPrice(1000, 20, 'ON'),(1000*20*(0.97)*(1.13)).toFixed(2));
+	it('totalCost q=50,p=20,pr=ON', function(done) {
+		assert.equal(getPrice(50, 20, 'ON'),(50*20*(0.97)*(1.13)).toFixed(2));
 		done();
 	});
-	it('totalCost q=1001,p=20,pr=ON', function(done) {
-		assert.equal(getPrice(1001, 20, 'ON'),(1001*20*(0.97)*(1.13)).toFixed(2));
+	it('totalCost q=50,p=20.02,pr=ON', function(done) {
+		assert.equal(getPrice(50, 20.02, 'ON'),(50*20.02*(0.97)*(1.13)).toFixed(2));
 		done();
 	});
-	it('totalCost q=4999,p=20,pr=ON', function(done) {
-		assert.equal(getPrice(4999, 20, 'ON'),(4999*20*(0.97)*(1.13)).toFixed(2));
+	it('totalCost q=250,p=19.99,pr=ON', function(done) {
+		assert.equal(getPrice(250, 19.99, 'ON'),(250*19.99*(0.97)*(1.13)).toFixed(2));
 		done();
 	});
 
@@ -98,6 +98,11 @@ describe( 'Test suite', function( done) {
 	});
 	it('totalCost q=10001,p=20,pr=ON', function(done) {
 		assert.equal(getPrice(10001, 20, 'ON'),(10001*20*(0.9)*(1.13)).toFixed(2));
+		done();
+	});
+
+	it('totalCost q=3600,p=2.25,pr=MI', function(done) {
+		assert.equal(getPrice(3600, 2.25, 'MI'),(3600*2.25*(0.97)*(1.06)).toFixed(2));
 		done();
 	});
 	
