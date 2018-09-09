@@ -3,20 +3,8 @@
  * 
  */
 
-const provinceData = {
-	AB: { name: "Alberta", taxRate: 5.0 },
-	ON: { name: "Ontario", taxRate: 13.0 },
-	QC: { name: "Quebec", taxRate: 14.975 },
-	MI: { name: "Michigan", taxRate: 6.0 }, //todo: USD exchange rate?
-	DE: { name: "Detroit", taxRate: 0.0 } // todo: USD exchange rate?
-}
-
-const discounts = {
-	1000: 3.0,
-	5000: 5.0,
-	7000: 7.0,
-	10000: 10.0
-}
+const provinceData = require('./config').provinceData;
+const discounts = require('./config').discounts;
 
 const getDiscountRate = function () {
 
