@@ -1,4 +1,4 @@
-# Hiring Exercise
+# Pricing Exercise (NodeJS library)
 
 # Runtime versions
 The library was tested on Windows 10 with the following versions:
